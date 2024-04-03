@@ -56,4 +56,14 @@ void Game::update()
 		camera->moveUp(speed * GameTime::getDelta());
 	if (Input::getKey(Input::q, Input::Repeated))
 		camera->moveUp(-speed * GameTime::getDelta());
+
+	if (Input::getKey(Input::l, Input::Repeated))
+		camera->rotYaw(speed * GameTime::getDelta());
+	if (Input::getKey(Input::j, Input::Repeated))
+		camera->rotYaw(-speed * GameTime::getDelta());
+
+	if (Input::getKey(Input::i, Input::Repeated))
+		camera->rotPitch(speed * GameTime::getDelta());
+	if (Input::getKey(Input::k, Input::Repeated))
+		camera->rotPitch(-speed * GameTime::getDelta());
 }
