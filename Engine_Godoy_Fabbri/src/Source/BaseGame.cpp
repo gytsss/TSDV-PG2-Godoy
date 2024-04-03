@@ -12,7 +12,6 @@ namespace ToToEng
         renderer = new Renderer(window, camera);
         collisionManager = new CollisionManager();
 
-        camera->transform.setPos({0, 300, 600});
 
         GameTime::resetTime();
     }
@@ -40,8 +39,7 @@ namespace ToToEng
         while (!window->shouldClose())
         {
             GameTime::update();
-            renderer->setView(lookAt(camera->transform.getPos(),
-                                     camera->transform.getPos() + camera->transform.forward(), camera->transform.up()));
+            renderer->setView(lookAt(camera->pos, camera->pos + camera->dir, camera->up));
 
             for (Entity* entity : entities)
                 entity->update();

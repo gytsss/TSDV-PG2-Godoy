@@ -31,7 +31,6 @@ Game::Game(int width, int height, const char* title) : BaseGame(width, height, t
 	shape->transform.setScale(vec3(10, 10, 0.f));
 	entities.push_back(shape);*/
 
-	camera->transform.setPos(vec3(0, 0, camera->transform.getPos().z));
 }
 
 Game::~Game()
@@ -40,5 +39,21 @@ Game::~Game()
 
 void Game::update()
 {
+	float speed = 100.f;
+	float camSens = 5.f;
 
+	if (Input::getKey(Input::a, Input::Repeated))
+		camera->moveRight(-speed * GameTime::getDelta());
+	if (Input::getKey(Input::d, Input::Repeated))
+		camera->moveRight(speed * GameTime::getDelta());
+
+	if (Input::getKey(Input::w, Input::Repeated))
+		camera->moveForward(speed * GameTime::getDelta());
+	if (Input::getKey(Input::s, Input::Repeated))
+		camera->moveForward(-speed * GameTime::getDelta());
+
+	if (Input::getKey(Input::e, Input::Repeated))
+		camera->moveUp(speed * GameTime::getDelta());
+	if (Input::getKey(Input::q, Input::Repeated))
+		camera->moveUp(-speed * GameTime::getDelta());
 }
