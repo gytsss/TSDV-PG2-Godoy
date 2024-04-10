@@ -12,7 +12,7 @@ namespace ToToEng
         renderer = new Renderer(window, camera);
         collisionManager = new CollisionManager();
 
-        camera->pos = vec3(0,0, 200);
+        camera->pos = vec3(0,0, 10);
 
         GameTime::resetTime();
     }

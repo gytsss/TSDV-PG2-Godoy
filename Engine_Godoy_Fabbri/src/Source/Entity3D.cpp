@@ -55,6 +55,21 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         1.f, 1.f, 1.f, 1.f,
         1.f, 1.f, 1.f, 1.f,
         1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
+        1.f, 1.f, 1.f, 1.f,
         1.f, 1.f, 1.f, 1.f
     };
 
@@ -63,7 +78,32 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         0.f, 1.f,
         1.f, 1.f,
         0.f, 0.f,
-        0.f, 1.f
+        0.f, 1.f,
+
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        0.f, 1.f,
+
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        0.f, 1.f,
+
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        0.f, 1.f,
+
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        0.f, 1.f,
+
+        0.f, 1.f,
+        1.f, 1.f,
+        0.f, 0.f,
+        0.f, 1.f,
     };
 
     indices = new unsigned int[indexQty]
@@ -96,4 +136,5 @@ ToToEng::Entity3D::~Entity3D()
 
 void ToToEng::Entity3D::draw()
 {
+ renderer->drawShape(VAO, indexQty, color, transform.getTransformMatrix());   
 }
