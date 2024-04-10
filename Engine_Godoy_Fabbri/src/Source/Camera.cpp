@@ -21,6 +21,7 @@ void Camera::updateRot()
 	dir.x = cos(glm::radians(rot.y)) * cos(glm::radians(rot.x));
 	dir.y = sin(glm::radians(rot.x));
 	dir.z = sin(glm::radians(rot.y)) * cos(glm::radians(rot.x));
+	
 }
 
 void Camera::moveRight(float distance)

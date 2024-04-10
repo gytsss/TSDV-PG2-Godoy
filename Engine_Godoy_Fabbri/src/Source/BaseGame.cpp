@@ -12,6 +12,7 @@ namespace ToToEng
         renderer = new Renderer(window, camera);
         collisionManager = new CollisionManager();
 
+        camera->pos = vec3(0,0, 200);
 
         GameTime::resetTime();
     }
@@ -79,6 +80,7 @@ namespace ToToEng
             renderer->endDraw();
 
             glfwPollEvents();
+            
         }
     }
 }

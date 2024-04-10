@@ -19,6 +19,10 @@ namespace ToToEng
 		window = Window::getInstance()->getWindow();
 		
 		glfwSetKeyCallback(window, keyCallback);
+
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+		glfwSetCursorPosCallback(window, mouse_callback);
 	}
 
 	Input* Input::getInstance()
@@ -54,6 +58,11 @@ namespace ToToEng
 		return false;
 	}
 
+	glm::vec2 Input::getMouseDelta()
+	{
+		return getInstance()->mouseDelta;
+	}
+
 	void keyCallback(GLFWwindow* window, int key, int scancode, const int action, int mods)
 	{
 		switch (action)
@@ -68,5 +77,24 @@ namespace ToToEng
 
 		default:;
 		}
+	}
+
+	void mouse_callback(GLFWwindow* window, double posX, double posY)
+	{
+		if (Input::getInstance()->firstMouse) // initially set to true
+		{
+			Input::getInstance()->lastX = posX;
+			Input::getInstance()->lastY = posY;
+			Input::getInstance()->firstMouse = false;
+		}
+
+		float offsetX = posX - Input::getInstance()->lastX;
+		float offsetY = Input::getInstance()->lastY - posY;
+		Input::getInstance()->lastX = posX;
+		Input::getInstance()->lastY = posY;
+
+		Input::getInstance()->mouseDelta.x = offsetX;
+		Input::getInstance()->mouseDelta.y = offsetY;
+
 	}
 }

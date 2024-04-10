@@ -11,6 +11,7 @@ public:
 	vec3 up;
 	vec3 rot;
 
+
 	Camera();
 	~Camera();
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <glm/vec2.hpp>
 
 #include "Window.h"
 #include "Exports.h"
@@ -13,9 +14,16 @@ namespace ToToEng
 		static Input* instance;
 		GLFWwindow* window;
 		
+
 		explicit Input();
 
 	public:
+
+		float lastX = 400;
+		float lastY = 300;
+		glm::vec2 mouseDelta;
+		bool firstMouse;
+
 		enum KeyCode
 		{
 			a = GLFW_KEY_A,
@@ -65,7 +73,10 @@ namespace ToToEng
 		static Input* getInstance();
 
 		static bool getKey(KeyCode keyCode, Action action);
+
+		static glm::vec2 getMouseDelta();
 	};
 
 	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	void mouse_callback(GLFWwindow* window, double posX, double posY);
 }
