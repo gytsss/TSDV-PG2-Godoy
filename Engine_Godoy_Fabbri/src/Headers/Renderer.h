@@ -37,6 +37,9 @@ namespace ToToEng
 		mat4 view;
 		vec3 cameraPos;
 
+		vec3 ambientLightColor;
+		float ambientLightStrength;
+
 		static unsigned int compileShader(unsigned int type, const char* source);
 		static unsigned int createShader(const char* vShader, const char* fShader);
 		static ShaderProgramSource parseShader(const std::string& filepath);
@@ -54,6 +57,7 @@ namespace ToToEng
 			unsigned int indices[], unsigned int id, unsigned int qty);
 		void deleteBuffers(unsigned int& VBO, unsigned int& IBO, unsigned int& EBO, unsigned int id);
 		void drawEntity2D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans, unsigned int texture);
+		void drawEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void drawShape(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void setProjection(mat4 projection);
 		void setView(mat4 view);

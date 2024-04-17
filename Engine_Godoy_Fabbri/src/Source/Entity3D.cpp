@@ -42,35 +42,35 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
 
     colors = new float[vertexQty * 4]
     {
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
         
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
 
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
 
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
 
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
 
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f,
-        1.f, 1.f, 1.f, 1.f
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f,
+        1.f, 0.f, 0.f, 1.f
     };
 
     textureCoords = new float[vertexQty * 2]

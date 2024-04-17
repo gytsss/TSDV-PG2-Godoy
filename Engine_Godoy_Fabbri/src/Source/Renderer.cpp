@@ -38,6 +38,8 @@ namespace ToToEng
 		
 
 		view = lookAt(cameraPos, { 0, 0, 0 }, { 0, 1, 0 });
+		ambientLightColor = vec3(1.0f, 1.0f, 1.0f);
+		ambientLightStrength = 0.1f;
 	}
 
 	Renderer::~Renderer()
@@ -112,6 +114,28 @@ namespace ToToEng
 
 		glCall(glActiveTexture(GL_TEXTURE0));
 		glCall(glBindTexture(GL_TEXTURE_2D, texture));
+		glCall(glBindVertexArray(VAO));
+
+		glCall(glUniformMatrix4fv(u_TransformLocation, 1, GL_FALSE, glm::value_ptr(pvm)));
+
+		glCall(glDrawElements(GL_TRIANGLES, indexQty, GL_UNSIGNED_INT, 0));
+
+		glCall(glBindVertexArray(0));
+		glCall(glUseProgram(0));
+	}
+void Renderer::drawEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans)
+	{
+		mat4 pvm = projection * view * trans;
+
+		//vec3 ambient = ambientLightStrength * ambientLightColor;
+		glCall(glUseProgram(shader));
+		glCall(glUniform1i(glGetUniformLocation(shader, "ourTexture"), 0));
+		glCall(u_ColorLocation = glGetUniformLocation(shader, "u_Color"));
+
+		glCall(glUniform4f(u_ColorLocation, color.x, color.y, color.z, color.w));
+		//glCall(glUniform4f(glGetUniformLocation(shader, "lightColor"), ambientLightColor.x, ambientLightColor.y, ambientLightColor.z, 1.0f));
+		//glCall(glUniform4f(glGetUniformLocation(shapeShader, "ambientLight"), ambientLightColor.x, ambientLightColor.y, ambientLightColor.z, 1.0f));
+		
 		glCall(glBindVertexArray(VAO));
 
 		glCall(glUniformMatrix4fv(u_TransformLocation, 1, GL_FALSE, glm::value_ptr(pvm)));

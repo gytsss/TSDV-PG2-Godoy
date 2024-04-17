@@ -11,7 +11,13 @@
     <list default="true" id="59b83834-1b16-455b-92bb-7e2412bbcbcc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Engine_Godoy_Fabbri/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Engine_Godoy_Fabbri/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestProject/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TestProject/Game.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/shaders/Basic.shader" beforeDir="false" afterPath="$PROJECT_DIR$/res/shaders/Basic.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/shaders/Shape.shader" beforeDir="false" afterPath="$PROJECT_DIR$/res/shaders/Shape.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Headers/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Headers/Input.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Headers/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Headers/Renderer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Source/Entity3D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Source/Entity3D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Source/Input.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Source/Input.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Source/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Source/Renderer.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +68,7 @@
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="SWEA" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -217,7 +223,10 @@
       <workItem from="1701175105535" duration="4874000" />
       <workItem from="1701784830734" duration="557000" />
       <workItem from="1712191509076" duration="2934000" />
-      <workItem from="1712767266452" duration="8620000" />
+      <workItem from="1712767266452" duration="13392000" />
+      <workItem from="1713367446425" duration="699000" />
+      <workItem from="1713368589113" duration="389000" />
+      <workItem from="1713368991355" duration="2018000" />
     </task>
     <task id="LOCAL-00001" summary="Re-do singleton input">
       <option name="closed" value="true" />

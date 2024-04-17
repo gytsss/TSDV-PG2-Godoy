@@ -8,7 +8,12 @@ Game::Game(int width, int height, const char* title) : BaseGame(width, height, t
     entities.push_back(new Entity3D(renderer));
 
     entities.back()->transform.setScale({1,1,1});
-    
+
+    entities.back()->transform.setPos({0,0,5});
+
+    //entities.push_back(new Entity3D(renderer));
+    //entities.back()->transform.setScale({20, 0.2f, 20});
+    //entities.back()->transform.setPos({0,-0.1f,0});
 }
 
 Game::~Game()
@@ -48,6 +53,8 @@ void Game::update()
     camera->rotPitch(Input::getMouseDelta().y * camSens);
     camera->rotYaw(Input::getMouseDelta().x * camSens);
 
+    Input::resetMouseDelta();
+    
     if (camera->rot.x > 89.99f)
         camera->rot.x = 89.99f;
     if (camera->rot.x < -89.99f)

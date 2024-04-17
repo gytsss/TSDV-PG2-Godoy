@@ -63,6 +63,11 @@ namespace ToToEng
 		return getInstance()->mouseDelta;
 	}
 
+	void Input::resetMouseDelta()
+	{
+		getInstance()->mouseDelta = {0,0};
+	}
+
 	void keyCallback(GLFWwindow* window, int key, int scancode, const int action, int mods)
 	{
 		switch (action)

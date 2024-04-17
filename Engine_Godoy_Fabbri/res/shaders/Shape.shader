@@ -10,8 +10,8 @@ uniform mat4 u_Transform;
 
 void main()
 {
-	gl_Position = u_Transform * position;
-	ourColor = col;
+gl_Position = u_Transform * position;
+ourColor = col;
 }
 
 #shader fragment
@@ -22,7 +22,9 @@ out vec4 fragColor;
 in vec4 ourColor;
 uniform vec4 u_Color;
 
+uniform vec3 ambientLight;
+
 void main()
 {
-	fragColor = ourColor * u_Color;
+fragColor = ourColor * u_Color;
 };
