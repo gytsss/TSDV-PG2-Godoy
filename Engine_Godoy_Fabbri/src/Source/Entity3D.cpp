@@ -5,7 +5,7 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
     vertexQty = 24;
     indexQty = 36;
     id = 1;
-    
+
 
     positions = new float[vertexQty * 3]
     {
@@ -14,6 +14,11 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         -.5f, .5f, -.5f,
         .5f, .5f, -.5f,
 
+        -.5f, -.5f, .5f,
+        .5f, -.5f, .5f,
+        -.5f, .5f, .5f,
+        .5f, .5f, .5f,
+
         .5f, -.5f, -.5f,
         .5f, -.5f, .5f,
         .5f, .5f, -.5f,
@@ -32,45 +37,40 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         -.5f, -.5f, -.5f,
         .5f, -.5f, -.5f,
         -.5f, -.5f, .5f,
-        .5f, -.5f, .5f,
-
-        -.5f, -.5f, .5f,
-        .5f, -.5f, .5f,
-        -.5f, .5f, .5f,
-        .5f, .5f, .5f
+        .5f, -.5f, .5f
     };
 
     colors = new float[vertexQty * 4]
     {
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
 
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
 
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
 
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
 
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f,
-        1.f, 0.f, 0.f, 1.f
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f,
+        0.f, 1.f, 0.f, 1.f
     };
 
     textureCoords = new float[vertexQty * 2]
@@ -106,6 +106,39 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         0.f, 1.f,
     };
 
+    normals = new float[vertexQty * 3]
+    {
+        0.f, 0.f, -1.f,
+        0.f, 0.f, -1.f,
+        0.f, 0.f, -1.f,
+        0.f, 0.f, -1.f,
+
+        0.f, 0.f, 1.f,
+        0.f, 0.f, 1.f,
+        0.f, 0.f, 1.f,
+        0.f, 0.f, 1.f,
+
+        1.f, 0.f, 0.f,
+        1.f, 0.f, 0.f,
+        1.f, 0.f, 0.f,
+        1.f, 0.f, 0.f,
+
+        -1.f, 0.f, 0.f,
+        -1.f, 0.f, 0.f,
+        -1.f, 0.f, 0.f,
+        -1.f, 0.f, 0.f,
+
+        0.f, 1.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 1.f, 0.f,
+
+        0.f, -1.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, -1.f, 0.f
+    };
+
     indices = new unsigned int[indexQty]
     {
         0, 1, 2,
@@ -127,7 +160,7 @@ ToToEng::Entity3D::Entity3D(Renderer* renderer): Entity(renderer)
         21, 22, 23
     };
 
-    updateVao();
+    updateVao3D();
 }
 
 ToToEng::Entity3D::~Entity3D()
@@ -136,5 +169,6 @@ ToToEng::Entity3D::~Entity3D()
 
 void ToToEng::Entity3D::draw()
 {
- renderer->drawShape(VAO, indexQty, color, transform.getTransformMatrix());   
+    //renderer->drawShape(VAO, indexQty, color, transform.getTransformMatrix());
+    renderer->drawLightEntity3D(VAO, indexQty, color, transform.getTransformMatrix());
 }

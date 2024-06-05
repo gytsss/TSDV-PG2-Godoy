@@ -23,6 +23,8 @@ namespace ToToEng
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		glfwSetCursorPosCallback(window, mouse_callback);
+		
+		firstMouse = true;
 	}
 
 	Input* Input::getInstance()
@@ -86,7 +88,7 @@ namespace ToToEng
 
 	void mouse_callback(GLFWwindow* window, double posX, double posY)
 	{
-		if (Input::getInstance()->firstMouse) // initially set to true
+		if (Input::getInstance()->firstMouse)
 		{
 			Input::getInstance()->lastX = posX;
 			Input::getInstance()->lastY = posY;

@@ -22,7 +22,6 @@ out vec4 fragColor;
 in vec4 ourColor;
 uniform vec4 u_Color;
 
-uniform vec3 ambientLight;
 
 void main()
 {

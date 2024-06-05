@@ -136,6 +136,7 @@
     <None Include="..\res\shaders\Basic.shader" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\res\shaders\Lighting.shader" />
     <Content Include="..\res\shaders\Shape.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

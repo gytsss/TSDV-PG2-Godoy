@@ -30,6 +30,7 @@ namespace ToToEng
 		Camera* camera;
 		unsigned int shader;
 		unsigned int shapeShader;
+		unsigned int lightShader;
 		int u_TransformLocation;
 		int u_ShapeTransformLocation;
 		int u_ColorLocation;
@@ -53,11 +54,13 @@ namespace ToToEng
 		void beginDraw();
 		void endDraw();
 		void genVertexBuffer(unsigned int& VBO, unsigned int& VAO, float vertices[], unsigned int id, unsigned int qty);
+		void genVertexBuffer3D(unsigned int& VBO, unsigned int& VAO, float vertices[], unsigned int id, unsigned int qty);
 		void genIndexBuffer(unsigned int& IBO,
 			unsigned int indices[], unsigned int id, unsigned int qty);
 		void deleteBuffers(unsigned int& VBO, unsigned int& IBO, unsigned int& EBO, unsigned int id);
 		void drawEntity2D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans, unsigned int texture);
 		void drawEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
+		void drawLightEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void drawShape(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void setProjection(mat4 projection);
 		void setView(mat4 view);

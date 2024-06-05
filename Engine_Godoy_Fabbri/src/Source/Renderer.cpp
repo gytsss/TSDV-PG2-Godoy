@@ -16,6 +16,10 @@ namespace ToToEng
 		std::cout << glGetString(GL_VERSION) << std::endl;
 		shapeShader = createShader(shaderSource.vertexSource.c_str(), shaderSource.fragmentSource.c_str());
 
+		shaderSource = parseShader("../res/shaders/Lighting.shader");
+		std::cout << glGetString(GL_VERSION) << std::endl;
+		lightShader = createShader(shaderSource.vertexSource.c_str(), shaderSource.fragmentSource.c_str());
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -24,6 +28,8 @@ namespace ToToEng
 
 		glCall(u_ShapeTransformLocation = glGetUniformLocation(shapeShader, "u_Transform"));
 		_ASSERT(u_TransformLocation != -1);
+
+		glFrontFace(GL_CCW);
 
 		//3D
 			setProjection(perspective(radians(45.f),
@@ -38,8 +44,8 @@ namespace ToToEng
 		
 
 		view = lookAt(cameraPos, { 0, 0, 0 }, { 0, 1, 0 });
-		ambientLightColor = vec3(1.0f, 1.0f, 1.0f);
-		ambientLightStrength = 0.1f;
+		//ambientLightColor = vec3(1.0f, 1.0f, 1.0f);
+		//ambientLightStrength = 0.1f;
 	}
 
 	Renderer::~Renderer()
@@ -81,6 +87,35 @@ namespace ToToEng
 			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), reinterpret_cast<void*>(7 * sizeof(float)
 				)));
 		glCall(glEnableVertexAttribArray(2));
+	}
+void Renderer::genVertexBuffer3D(unsigned int& VBO, unsigned int& VAO, float vertices[], unsigned int id,
+		unsigned int qty)
+	{
+		glCall(glGenVertexArrays(id, &VAO));
+		glCall(glGenBuffers(id, &VBO));
+
+		glCall(glBindVertexArray(VAO));
+
+		glCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
+		glCall(glBufferData(GL_ARRAY_BUFFER, sizeof(float) * qty * 12, vertices, GL_STATIC_DRAW));
+
+		glCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 12 * sizeof(float), static_cast<void*>(0)));
+		glCall(glEnableVertexAttribArray(0));
+
+		glCall(
+			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 12 * sizeof(float), reinterpret_cast<void*>(3 * sizeof(float)
+				)));
+		glCall(glEnableVertexAttribArray(1));
+
+		glCall(
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 12 * sizeof(float), reinterpret_cast<void*>(7 * sizeof(float)
+				)));
+		glCall(glEnableVertexAttribArray(2));
+
+		glCall(
+			glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 12 * sizeof(float), reinterpret_cast<void*>(9 * sizeof(float)
+				)));
+		glCall(glEnableVertexAttribArray(3));
 	}
 
 	void Renderer::genIndexBuffer(unsigned int& IBO,
@@ -126,20 +161,70 @@ namespace ToToEng
 void Renderer::drawEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans)
 	{
 		mat4 pvm = projection * view * trans;
-
-		//vec3 ambient = ambientLightStrength * ambientLightColor;
+		
 		glCall(glUseProgram(shader));
 		glCall(glUniform1i(glGetUniformLocation(shader, "ourTexture"), 0));
 		glCall(u_ColorLocation = glGetUniformLocation(shader, "u_Color"));
 
 		glCall(glUniform4f(u_ColorLocation, color.x, color.y, color.z, color.w));
-		//glCall(glUniform4f(glGetUniformLocation(shader, "lightColor"), ambientLightColor.x, ambientLightColor.y, ambientLightColor.z, 1.0f));
-		//glCall(glUniform4f(glGetUniformLocation(shapeShader, "ambientLight"), ambientLightColor.x, ambientLightColor.y, ambientLightColor.z, 1.0f));
-		
 		glCall(glBindVertexArray(VAO));
 
 		glCall(glUniformMatrix4fv(u_TransformLocation, 1, GL_FALSE, glm::value_ptr(pvm)));
 
+		glCall(glDrawElements(GL_TRIANGLES, indexQty, GL_UNSIGNED_INT, 0));
+
+		glCall(glBindVertexArray(0));
+		glCall(glUseProgram(0));
+	}
+
+	void Renderer::drawLightEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans)
+	{
+		mat4 pvm = projection * view * trans;
+
+		GLint u_Model = glGetUniformLocation(lightShader, "model");
+		GLint u_View = glGetUniformLocation(lightShader, "view");
+		GLint u_Projection = glGetUniformLocation(lightShader, "projection");
+		
+		GLint u_LightPos  = glGetUniformLocation(lightShader, "lightPos");
+		GLint u_ViewPos  = glGetUniformLocation(lightShader, "viewPos");
+		GLint u_LightColor = glGetUniformLocation(lightShader, "lightColor");
+		GLint u_ObjectColor = glGetUniformLocation(lightShader, "objectColor");
+		
+		GLint u_MaterialAmbient = glGetUniformLocation(lightShader, "material.ambient");
+		GLint u_MaterialDiffuse = glGetUniformLocation(lightShader, "material.diffuse");
+		GLint u_MaterialSpecular = glGetUniformLocation(lightShader, "material.specular");
+		GLint u_MaterialShininess = glGetUniformLocation(lightShader, "material.shininess");
+		
+		GLint u_LightAmbient = glGetUniformLocation(lightShader, "light.ambient");
+		GLint u_LightDiffuse = glGetUniformLocation(lightShader, "light.diffuse");
+		GLint u_LightSpecular = glGetUniformLocation(lightShader, "light.specular");
+
+		
+		glCall(glUseProgram(lightShader));
+		//glCall(glUniform1i(glGetUniformLocation(shader, "ourTexture"), 0));
+		//glCall(u_ColorLocation = glGetUniformLocation(shader, "u_Color"));
+
+		//glCall(glUniform4f(u_ColorLocation, color.x, color.y, color.z, color.w));
+		glCall(glBindVertexArray(VAO));
+
+		glCall(glUniformMatrix4fv(u_Model, 1, GL_FALSE, glm::value_ptr(view)));
+		glCall(glUniformMatrix4fv(u_View, 1, GL_FALSE, glm::value_ptr(trans)));
+		glCall(glUniformMatrix4fv(u_Projection, 1, GL_FALSE, glm::value_ptr(projection)));
+
+		glCall(glUniform3f(u_LightPos, 0.0f, 0.0f, 0.0f));
+		glCall(glUniform3f(u_ViewPos, cameraPos.x, cameraPos.y, cameraPos.z));
+		glCall(glUniform3f(u_LightColor, 1.0f, 1.0f, 1.0f));
+		glCall(glUniform3f(u_ObjectColor, color.x, color.y, color.z));
+		
+		glCall(glUniform3f(u_LightAmbient, 0.2f, 0.2f, 0.2f));
+		glCall(glUniform3f(u_LightDiffuse, 0.5f, 0.5f, 0.5f));
+		glCall(glUniform3f(u_LightSpecular, 1.0f, 1.0f, 1.0f));
+		
+		glCall(glUniform3f(u_MaterialAmbient, 0.0215f, 0.1745f, 0.0215f));
+		glCall(glUniform3f(u_MaterialDiffuse, 0.07568f, 0.61424f, 0.07568));
+		glCall(glUniform3f(u_MaterialSpecular, 0.633f, 0.727811f, 0.633f));
+		glCall(glUniform1f(u_MaterialShininess, 0.6f));
+		
 		glCall(glDrawElements(GL_TRIANGLES, indexQty, GL_UNSIGNED_INT, 0));
 
 		glCall(glBindVertexArray(0));

@@ -28,8 +28,10 @@ namespace ToToEng
 		float* positions;
 		float* colors;
 		float* textureCoords;
+		float* normals;
 
 		virtual void updateVao();
+		void updateVao3D();
 
 	public:
 		vec4 color;
@@ -41,6 +43,7 @@ namespace ToToEng
 		virtual ~Entity();
 		
 		virtual void genBuffers();
+		void genBuffers3D();
 		virtual void deleteBuffers();
 		virtual void update();
 		virtual void draw() = 0;
