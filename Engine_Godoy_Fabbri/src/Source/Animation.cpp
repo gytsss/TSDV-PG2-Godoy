@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-#include "Entity.h"
+#include "Entities/Entity.h"
 #include "GameTime.h"
 
 void Animation::updateFrame()

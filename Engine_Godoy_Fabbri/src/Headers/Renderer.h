@@ -2,11 +2,13 @@
 
 #include <string>
 #include <sstream>
+#include <vector>
 
 #include "Window.h"
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Camera.h"
+#include "Mesh.h"
 
 #pragma region MACROS
 #define ASSERT(x) if (!(x)) __debugbreak()
@@ -31,6 +33,8 @@ namespace ToToEng
 		unsigned int shader;
 		unsigned int shapeShader;
 		unsigned int lightShader;
+		unsigned int modelShader;
+		unsigned int basicModelShader;
 		int u_TransformLocation;
 		int u_ShapeTransformLocation;
 		int u_ColorLocation;
@@ -61,6 +65,7 @@ namespace ToToEng
 		void drawEntity2D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans, unsigned int texture);
 		void drawEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void drawLightEntity3D(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
+		void drawModel3D(unsigned int& VAO, unsigned int indexQty, mat4 trans, std::vector<Texture> textures);
 		void drawShape(unsigned int& VAO, unsigned int indexQty, vec4 color, mat4 trans);
 		void setProjection(mat4 projection);
 		void setView(mat4 view);

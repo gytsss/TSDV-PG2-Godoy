@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity2D.h"
+#include "Entities/Entity2D.h"
 #include "Exports.h"
 
 namespace ToToEng

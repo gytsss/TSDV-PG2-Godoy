@@ -1,6 +1,6 @@
 #pragma once
 #include "Animation.h"
-#include "Entity2D.h"
+#include "Entities/Entity2D.h"
 
 namespace ToToEng
 {

@@ -63,11 +63,11 @@ namespace ToToEng
 
                     if (!entityOne->isTrigger && !entityTwo->isTrigger)
                     {
-                        BoxCollider2D* colliderOne = dynamic_cast<Entity2D*>(entityOne)->collider;
-                        BoxCollider2D* colliderTwo = dynamic_cast<Entity2D*>(entityTwo)->collider;
+                        // BoxCollider2D* colliderOne = dynamic_cast<Entity2D*>(entityOne)->collider;
+                        // BoxCollider2D* colliderTwo = dynamic_cast<Entity2D*>(entityTwo)->collider;
 
-                        if (colliderOne && colliderTwo)
-                            CollisionManager::checkCollision(colliderOne, colliderTwo);
+                        // if (colliderOne && colliderTwo)
+                        //     CollisionManager::checkCollision(colliderOne, colliderTwo);
                     }
                 }
             }
