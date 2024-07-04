@@ -94,12 +94,14 @@ struct Material {
     float shininess;
 };
 
-#define MAX_POINT_LIGHTS 2
-#define MAX_SPOT_LIGHTS 2
+#define MAX_POINT_LIGHTS 4
+#define MAX_SPOT_LIGHTS 4
 uniform Material material;
 uniform Light light;
 uniform PointLight pointLights[MAX_POINT_LIGHTS];
 uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
+uniform float pointLightCount;
+uniform float spotLightCount;
 
 void main()
 {
@@ -108,10 +110,10 @@ void main()
 
     vec3 result = CalcDirLight(dirLight, norm, viewDir);
 
-    for (int i = 0; i < MAX_POINT_LIGHTS ; i++)
+    for (int i = 0; i < pointLightCount ; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
 
-    for (int i = 0; i < MAX_SPOT_LIGHTS ; i++)
+    for (int i = 0; i < spotLightCount ; i++)
         result += CalcSpotLight(spotLights[i], norm, FragPos, viewDir);
         
     FragColor = vec4(result, 1.0) * texture(texture_diffuse1, TexCoords);

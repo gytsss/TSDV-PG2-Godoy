@@ -1,7 +1,8 @@
 #pragma once
 #include "Light.h"
+#include "Exports.h"
 
-class DirLight : public Light
+class TOTO_API DirLight : public Light
 {
 public:
     glm::vec3 direction;

@@ -83,4 +83,19 @@ namespace ToToEng
             
         }
     }
+
+    void BaseGame::addDirLight(DirLight* dirLight)
+    {
+        renderer->addDirLight(dirLight);
+    }
+
+    void BaseGame::addPointLight(PointLight* pointLight)
+    {
+        renderer->addPointLight(pointLight);
+    }
+
+    void BaseGame::addSpotLight(SpotLight* spotLight)
+    {
+        renderer->addSpotLight(spotLight);
+    }
 }

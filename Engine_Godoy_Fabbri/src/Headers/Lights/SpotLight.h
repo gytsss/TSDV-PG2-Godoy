@@ -1,7 +1,8 @@
 #pragma once
 #include "Light.h"
+#include "Exports.h"
 
-class SpotLight : public Light
+class TOTO_API SpotLight : public Light
 {
 public:
     glm::vec3 position;

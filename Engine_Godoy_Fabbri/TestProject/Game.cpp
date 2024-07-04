@@ -3,27 +3,19 @@
 #include "Character.h"
 #include "Headers/Model.h"
 #include "Headers/Entities/Entity3D.h"
+#include "Headers/Lights/PointLight.h"
+#include "Headers/Renderer.h"
+
 
 Game::Game(int width, int height, const char* title) : BaseGame(width, height, title)
 {
     camera->rot = {0, 0, 0}; // reset rot
-    //
-    // entities.push_back(new Entity3D(renderer));
-    // entities.back()->transform.setScale({20,20,.5f});
-    // entities.back()->transform.setPos({0,0,20});
-    // entities.back()->setColor({1,0,0,1});
-
-    // entities.push_back(new Entity3D(renderer));
-    // entities.back()->transform.setScale({1,1,1});
-    // entities.back()->transform.setPos({0,0,10});
-    // entities.back()->setColor({1,0,0,1});
-
-    // model = new Model(renderer, "../res/models/backpack.obj", true);
-    // model->transform.setScale({100,100,100});
-    // model->transform.setPos({0,0,5});
-    // model->setColor({1,1,1,1});
-
-
+    
+    entities.push_back(new Model(renderer, "../res/models/backpack.obj", true));
+    entities.back()->transform.setScale({1, 1, 1});
+    entities.back()->transform.setPos({camera->pos.x, camera->pos.y, camera->pos.z});
+    entities.back()->setColor({1, 1, 1, 1});
+    
     entities.push_back(new Model(renderer, "../res/models/backpack.obj", true));
     entities.back()->transform.setScale({1, 1, 1});
     entities.back()->transform.setPos({0, 25, 15});
@@ -33,15 +25,16 @@ Game::Game(int width, int height, const char* title) : BaseGame(width, height, t
     entities.back()->transform.setScale({1, 1, 1});
     entities.back()->transform.setPos({10, 25, 15});
     entities.back()->setColor({1, 1, 1, 1});
-
+    
     entities.push_back(new Model(renderer, "../res/models/CH_Dummy_HurtV2.fbx", false));
     entities.back()->transform.setScale({0.1, 0.1, 0.1});
     entities.back()->transform.setPos({0, 0, 15});
     entities.back()->setColor({1, 1, 1, 1});
-
-    //renderer->addDirLight(new DirLight({0.5f, 0.5f, 0.5f}, {0.4f, 0.4f, 0.4f}, {0.5f, 0.5f, 0.5f}, {-0.2f, -1.0f, -0.3f}));
-    //renderer->addPointLight(new PointLight({10.0f, 10.f, 10.f}, {10.0f, 10.f, 10.f}, {10.0f, 10.f, 10.f}, {0.0f, 0.0f, 3.0f}, 1.0f, 0.09f, 0.032f));
-    //renderer->addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {camera->pos.x, camera->pos.y, camera->pos.z},{camera->pos.x, camera->pos.y, camera->pos.z}, 1.0f, 0.09f, 0.032f, 45.0f, 45.0f));
+    
+    //addDirLight(new DirLight({0.5f, 0.5f, 0.5f}, {0.4f, 0.4f, 0.4f}, {0.5f, 0.5f, 0.5f}, {-0.2f, -1.0f, -0.3f}));
+    //addPointLight(new PointLight({1.0f, 1.f, 1.f}, {10.0f, 10.f, 10.f}, {10.0f, 10.f, 10.f}, {0.0f, 0.0f, 20.0f}, 1.0f, 0.09f, 0.032f));
+    //addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f, 10.0f}, {10.0f, 10.0f, 10.0f}, {10, 25, 15},{0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)), glm::cos(glm::radians(10.5f))));
+    //addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f, 10.0f}, {10.0f, 10.0f, 10.0f}, {-10, 25, 15},{0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)), glm::cos(glm::radians(10.5f))));
 }
 
 Game::~Game()
@@ -50,6 +43,7 @@ Game::~Game()
 
 void Game::update()
 {
+    
     float speed = 10.f;
     float camSens = 0.3f;
 
@@ -91,6 +85,9 @@ void Game::update()
         });
 
 
+    entities.front()->transform.setPos({camera->pos.x, camera->pos.y + 2, camera->pos.z});
+
+    
     camera->rotPitch(Input::getMouseDelta().y * camSens);
     camera->rotYaw(Input::getMouseDelta().x * camSens);
 

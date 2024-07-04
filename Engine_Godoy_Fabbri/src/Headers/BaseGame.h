@@ -30,5 +30,9 @@ namespace ToToEng
         void run();
 
         virtual void update() = 0;
+
+        void addDirLight(DirLight* dirLight);
+        void addPointLight(PointLight* pointLight);
+        void addSpotLight(SpotLight* spotLight);
     };
 }
