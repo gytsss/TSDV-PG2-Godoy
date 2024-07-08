@@ -20,8 +20,8 @@
 	ASSERT(glLogCall(#x, __FILE__, __LINE__))
 #pragma endregion
 
-const int MAX_POINT_LIGHTS = 4;
 const int MAX_DIR_LIGHTS = 2;
+const int MAX_POINT_LIGHTS = 4;
 const int MAX_SPOT_LIGHTS = 4;
 
 namespace ToToEng
@@ -48,7 +48,6 @@ namespace ToToEng
 		mat4 projection;
 		mat4 view;
 		vec3 cameraPos;
-		bool thirdPersonCamera = false;
 
 
 		DirLight* dirLights[MAX_DIR_LIGHTS];
@@ -91,5 +90,7 @@ namespace ToToEng
 		void addPointLight(PointLight* pointLight);
 		void addSpotLight(SpotLight* spotLight);
 		void changeCameraMode();
+		bool getIsThirdPerson();
+		void setCameraReference(vec3 obj);
 	};
 }

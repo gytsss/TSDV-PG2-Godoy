@@ -55,6 +55,9 @@ namespace ToToEng
 		void translateX(float x);
 		void translateY(float y);
 		void translateZ(float z);
+		void moveRight(float x);
+		void moveUp(float y);
+		void moveForward(float z);
 
 		void setScale(const vec3& v);
 		void setScaleX(float x);

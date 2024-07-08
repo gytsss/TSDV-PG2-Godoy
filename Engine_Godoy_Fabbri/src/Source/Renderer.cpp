@@ -11,6 +11,7 @@ namespace ToToEng
     {
         //glfwWindowHint(GLFW_DEPTH_BITS, 24);
         this->window = window;
+        this->camera = camera;
 
         ShaderProgramSource shaderSource = parseShader("../res/shaders/Basic.shader");
         std::cout << glGetString(GL_VERSION) << std::endl;
@@ -50,7 +51,7 @@ namespace ToToEng
         setProjection(perspective(radians(45.f),
                                   static_cast<float>(window->getWidth()) / static_cast<float>(window->getHeight()),
                                   1.f, 6000.f));
-        if (thirdPersonCamera)
+        if (camera->thirdPersonCamera)
         {
             cameraPos = vec3(0.0f, 0.0f, -10.0f);
             view = lookAt(cameraPos, {0, 0, 0}, {0, 1, 0});
@@ -77,8 +78,7 @@ namespace ToToEng
                                       {0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)),
                                       glm::cos(glm::radians(10.5f)));
         
-
-
+        
         dirLightCount = 1;
         pointLightCount = 1;
         spotLightCount = 1;
@@ -596,18 +596,17 @@ namespace ToToEng
 
     void Renderer::changeCameraMode()
     {
-        thirdPersonCamera = !thirdPersonCamera;
-        
-        if (thirdPersonCamera)
-        {
-            cameraPos = vec3(0.0f, 0.0f, -10.0f);
-            view = lookAt(cameraPos, {0, 0, 0}, {0, 1, 0});
-        }
-        else
-        {
-            cameraPos = vec3(0.0f, 0.0f, 0.0f);
-            view = lookAt(cameraPos, {0, 0, 0}, {0, 1, 0});
-        }
+        camera->setThirdPersonCamera(camera->thirdPersonCamera = !camera->thirdPersonCamera);
+    }
+
+    bool Renderer::getIsThirdPerson()
+    {
+        return camera->getIsThirdPerson();
+    }
+
+    void Renderer::setCameraReference(vec3 obj)
+    {
+        camera->setCameraReference(obj);
     }
 
     unsigned int Renderer::compileShader(unsigned int type, const char* source)

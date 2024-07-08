@@ -13,7 +13,7 @@ class Game :
 	public BaseGame
 {
 public:
-
+	
 	Model* model;
 	Game(int width, int height, const char* title);
 	~Game() override;

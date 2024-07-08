@@ -12,7 +12,8 @@ namespace ToToEng
         renderer = new Renderer(window, camera);
         collisionManager = new CollisionManager();
 
-        camera->pos = vec3(0,0, 10);
+        camera->pos = vec3(0, 0, 10);
+        //setCameraReference({0, 0, 0});
 
         GameTime::resetTime();
     }
@@ -30,8 +31,8 @@ namespace ToToEng
             entities.pop_front();
             delete tmp;
         }
-        
-        
+
+
         entities.clear();
     }
 
@@ -40,7 +41,15 @@ namespace ToToEng
         while (!window->shouldClose())
         {
             GameTime::update();
-            renderer->setView(lookAt(camera->pos, camera->pos + camera->dir, camera->up));
+            if (camera->thirdPersonCamera)
+            {
+                camera->pos = (entities.front()->transform.getPos() - (entities.front()->transform.forward() * - 30.0f));
+                camera->dir = entities.front()->transform.getPos();
+                renderer->setView(lookAt(camera->pos, camera->thirdPersonCameraReference, camera->up));
+                camera->updateTpCamera();
+            }
+            else
+                renderer->setView(lookAt(camera->pos, camera->pos + camera->dir, camera->up));
 
             for (Entity* entity : entities)
                 entity->update();
@@ -60,15 +69,7 @@ namespace ToToEng
 
                     if (!newCollider)
                         continue;
-
-                    if (!entityOne->isTrigger && !entityTwo->isTrigger)
-                    {
-                        // BoxCollider2D* colliderOne = dynamic_cast<Entity2D*>(entityOne)->collider;
-                        // BoxCollider2D* colliderTwo = dynamic_cast<Entity2D*>(entityTwo)->collider;
-
-                        // if (colliderOne && colliderTwo)
-                        //     CollisionManager::checkCollision(colliderOne, colliderTwo);
-                    }
+                    
                 }
             }
 
@@ -80,7 +81,6 @@ namespace ToToEng
             renderer->endDraw();
 
             glfwPollEvents();
-            
         }
     }
 
@@ -97,5 +97,25 @@ namespace ToToEng
     void BaseGame::addSpotLight(SpotLight* spotLight)
     {
         renderer->addSpotLight(spotLight);
+    }
+
+    void BaseGame::changeCameraMode()
+    {
+        renderer->changeCameraMode();
+    }
+
+    bool BaseGame::getIsThirdPerson()
+    {
+        return renderer->getIsThirdPerson();
+    }
+
+    void BaseGame::setCameraReference(vec3 obj)
+    {
+        renderer->setCameraReference(obj);
+    }
+
+    void BaseGame::setView(mat4 view)
+    {
+        renderer->setView(view);
     }
 }

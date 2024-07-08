@@ -146,6 +146,30 @@ namespace ToToEng
         updateTransformMatrix();
     }
 
+    void Transform::moveRight(float x)
+    {
+        vec3 rightVector = right(); 
+        pos += rightVector * x;
+        posMat = translate(posMat, rightVector * x);
+        updateTransformMatrix();
+    }
+
+    void Transform::moveUp(float y)
+    {
+        vec3 upVector = up();
+        pos += upVector * y;
+        posMat = translate(posMat, upVector * y);
+        updateTransformMatrix();
+    }
+
+    void Transform::moveForward(float z)
+    {
+        vec3 forwardVector = forward(); 
+        pos += forwardVector * z;
+        posMat = translate(posMat, forwardVector * z);
+        updateTransformMatrix();
+    }
+
     void Transform::setScale(const vec3& v)
     {
         scale = v;
