@@ -87,7 +87,7 @@ void Game::update()
         entities.front()->transform.rotateY(-Input::getMouseDelta().x * camSens);
         entities.front()->transform.rotateX(-Input::getMouseDelta().y * camSens);
 
-        setCameraReference(entities.front()->transform.getPos());
+        camera->setCameraReference(entities.front()->transform.getPos());
     }
 
     if (Input::getKey(Input::l, Input::Repeated))
@@ -114,7 +114,8 @@ void Game::update()
 
     if (Input::getKey(Input::c, Input::Pressed))
         changeCameraMode();
-
+    if (Input::getKey(Input::r, Input::Pressed))
+        turnSpotLight(0);
 
     camera->rotPitch(Input::getMouseDelta().y * camSens);
     camera->rotYaw(Input::getMouseDelta().x * camSens);

@@ -89,8 +89,16 @@ namespace ToToEng
 		void addDirLight(DirLight* dirLight);
 		void addPointLight(PointLight* pointLight);
 		void addSpotLight(SpotLight* spotLight);
+		void turnOnDirLight(int index);
+		void turnOffDirLight(int index);
+		void turnDirLight(int index);
+		void turnOnPointLight(int index);
+		void turnOffPointLight(int index);
+		void turnPointLight(int index);
+		void turnOnSpotLight(int index);
+		void turnOffSpotLight(int index);
+		void turnSpotLight(int index);
 		void changeCameraMode();
 		bool getIsThirdPerson();
-		void setCameraReference(vec3 obj);
 	};
 }

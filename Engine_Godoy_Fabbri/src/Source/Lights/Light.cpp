@@ -27,3 +27,18 @@ void Light::setSpecular(glm::vec3 specular)
 {
     this->specular = specular;
 }
+
+void Light::turnOn()
+{
+    isOn = true;
+}
+
+void Light::turnOff()
+{
+    isOn = false;
+}
+
+void Light::turn()
+{
+    isOn = !isOn;
+}

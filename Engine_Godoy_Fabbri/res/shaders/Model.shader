@@ -47,7 +47,6 @@ struct DirLight {
     vec3 diffuse;
     vec3 specular;
 };
-uniform DirLight dirLight;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
 struct PointLight {
@@ -96,19 +95,24 @@ struct Material {
 
 #define MAX_POINT_LIGHTS 4
 #define MAX_SPOT_LIGHTS 4
+#define MAX_DIR_LIGHTS 4
 uniform Material material;
 uniform Light light;
 uniform PointLight pointLights[MAX_POINT_LIGHTS];
 uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
+uniform DirLight dirLights[MAX_DIR_LIGHTS];
 uniform float pointLightCount;
 uniform float spotLightCount;
+uniform float dirLightCount;
 
 void main()
 {
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
-
-    vec3 result = CalcDirLight(dirLight, norm, viewDir);
+    vec3 result;
+    
+    for (int i = 0; i < dirLightCount ; i++)
+     result = CalcDirLight(dirLights[i], norm, viewDir);
 
     for (int i = 0; i < pointLightCount ; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);

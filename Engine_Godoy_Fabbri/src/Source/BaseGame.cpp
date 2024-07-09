@@ -99,6 +99,51 @@ namespace ToToEng
         renderer->addSpotLight(spotLight);
     }
 
+    void BaseGame::turnOnDirLight(int index)
+    {
+        renderer->turnOnDirLight(index);
+    }
+
+    void BaseGame::turnOffDirLight(int index)
+    {
+        renderer->turnOffDirLight(index);
+    }
+
+    void BaseGame::turnDirLight(int index)
+    {
+        renderer->turnDirLight(index);
+    }
+
+    void BaseGame::turnPointLight(int index)
+    {
+        renderer->turnPointLight(index);
+    }
+
+    void BaseGame::turnSpotLight(int index)
+    {
+        renderer->turnSpotLight(index);
+    }
+
+    void BaseGame::turnOnPointLight(int index)
+    {
+        renderer->turnOnPointLight(index);
+    }
+
+    void BaseGame::turnOffPointLight(int index)
+    {
+        renderer->turnOffPointLight(index);
+    }
+
+    void BaseGame::turnOnSpotLight(int index)
+    {
+        renderer->turnOnSpotLight(index);
+    }
+
+    void BaseGame::turnOffSpotLight(int index)
+    {
+        renderer->turnOffSpotLight(index);
+    }
+
     void BaseGame::changeCameraMode()
     {
         renderer->changeCameraMode();
@@ -107,11 +152,6 @@ namespace ToToEng
     bool BaseGame::getIsThirdPerson()
     {
         return renderer->getIsThirdPerson();
-    }
-
-    void BaseGame::setCameraReference(vec3 obj)
-    {
-        renderer->setCameraReference(obj);
     }
 
     void BaseGame::setView(mat4 view)

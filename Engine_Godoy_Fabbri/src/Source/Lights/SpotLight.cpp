@@ -13,6 +13,7 @@ SpotLight::SpotLight(const glm::vec3& ambient, const glm::vec3& diffuse, const g
     this->cutOff = cutOff;
     this->outerCutOff = outerCutOff;
     this->direction = direction;
+    tag = LightType::Spot;
 }
 
 SpotLight::~SpotLight()

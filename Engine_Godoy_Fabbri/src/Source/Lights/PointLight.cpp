@@ -10,6 +10,7 @@ PointLight::PointLight(const glm::vec3& ambient, const glm::vec3& diffuse, const
     this->constant = constant;
     this->linear = linear;
     this->quadratic = quadratic;
+    tag = LightType::Point;
 }
 
 PointLight::~PointLight()
