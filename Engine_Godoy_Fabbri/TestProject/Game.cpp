@@ -36,7 +36,7 @@ Game::Game(int width, int height, const char* title) : BaseGame(width, height, t
     addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f, 10.0f}, {10.0f, 10.0f, 10.0f}, {10, 25, 15},
                                {0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)),
                                glm::cos(glm::radians(10.5f))));
-    addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f, 10.0f}, {10.0f, 10.0f, 10.0f}, {-10, 25, 15},{0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)), glm::cos(glm::radians(10.5f))));
+    //addSpotLight(new SpotLight({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f, 10.0f}, {10.0f, 10.0f, 10.0f}, {-10, 25, 15},{0, -1, 0}, 1.0f, 0.09f, 0.032f, glm::cos(glm::radians(10.5f)), glm::cos(glm::radians(10.5f))));
 }
 
 Game::~Game()
