@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Renderer.h"
 #include "../Exports.h"
 
 namespace ToToEng

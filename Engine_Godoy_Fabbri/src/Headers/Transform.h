@@ -23,11 +23,17 @@ namespace ToToEng
 		mat4 posMat;
 		mat4 scaleMat;
 		mat4 rotMat;
+		mat4 worldModel;
+		mat4 localModel;
+		mat4 parentModel;
 		void updateTransformMatrix();
 
 	public:
 		Transform();
 		~Transform();
+
+		void updateLocalTransformMatrix();
+		void updateTransformRotation();
 
 #pragma region GETTERS
 
@@ -69,6 +75,16 @@ namespace ToToEng
 		void rotateY(float y);
 		void rotateZ(float z);
 
+		void setForward(vec3 v);
+		void setRight(vec3 v);
+		void setUp(vec3 v);
+
 #pragma endregion
+
+#pragma region OTHERS
+		vec3 static QuatToVec(quat quat, vec3 vec);
+		quat static EulerToQuat(vec3 euler);
+#pragma endregion
+		
 	};
 }
