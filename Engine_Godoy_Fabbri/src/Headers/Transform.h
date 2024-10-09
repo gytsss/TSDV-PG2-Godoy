@@ -45,6 +45,10 @@ namespace ToToEng
 		
 		mat4 getTransformMatrix();
 
+		mat4 getWorldModel() { return worldModel; };
+		mat4 getLocalModel() { return localModel; };
+		mat4 getParentModel() { return parentModel; };
+
 		vec3 up();
 		vec3 right();
 		vec3 forward();
@@ -78,6 +82,10 @@ namespace ToToEng
 		void setForward(vec3 v);
 		void setRight(vec3 v);
 		void setUp(vec3 v);
+
+		void setWorldModel(mat4 v) { worldModel = v; }
+		void setLocalModel(mat4 v) { localModel = v; }
+		void setParentModel(mat4 v) { parentModel = v; }
 
 #pragma endregion
 
