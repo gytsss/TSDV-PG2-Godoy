@@ -81,10 +81,10 @@ namespace ToToEng
 
 #pragma endregion
 
+		
+	};
 #pragma region OTHERS
 		vec3 static QuatToVec(quat quat, vec3 vec);
 		quat static EulerToQuat(vec3 euler);
 #pragma endregion
-		
-	};
 }
